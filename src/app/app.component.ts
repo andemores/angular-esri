@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Esri App v. 1.0';
+  title = 'Geocap Subsurface Server';
+  version = 1.0;
 }

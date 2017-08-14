@@ -24,12 +24,13 @@ export class EsriMapComponent implements OnInit {
     // only load the ArcGIS API for JavaScript when this component is loaded
     return this.esriLoader.load({
       // use a specific version of the JSAPI
-      url: 'https://js.arcgis.com/4.4/'
+      //url: 'https://js.arcgis.com/4.4/'
+      url: 'https://js.arcgis.com/3.21/'
     }).then(() => {
       // load the needed Map and MapView modules from the JSAPI
       this.esriLoader.loadModules([
-        'esri/Map',
-        'esri/views/MapView'
+        'esri/map'
+
       ]).then(([
         Map,
         MapView
@@ -38,18 +39,26 @@ export class EsriMapComponent implements OnInit {
           basemap: 'hybrid'
         };
 
-        const map: any = new Map(mapProperties);
 
-        const mapViewProperties: any = {
-          // create the map view at the DOM element in this component
-          container: this.mapViewEl.nativeElement,
-          // supply additional options
-          center: [-12.287, -37.114],
-          zoom: 12,
-          map // property shorthand for object literal
-        };
+        //const map: any = new Map(mapProperties);
 
-        this.mapView = new MapView(mapViewProperties);
+        const map: any = new Map(this.mapViewEl.nativeElement, {
+          basemap: "topo",  //For full list of pre-defined basemaps, navigate to http://arcg.is/1JVo6Wd
+          center: [-122.45, 37.75], // longitude, latitude
+          zoom: 13
+        });        
+
+        // const mapViewProperties: any = {
+        //   // create the map view at the DOM element in this component
+        //   container: this.mapViewEl.nativeElement,
+        //   // supply additional options
+        //   //center: [-12.287, -37.114],
+        //   //zoom: 12,
+        //   map // property shorthand for object literal
+        // };
+
+        //this.mapView = new MapView(mapViewProperties);
+
       });
     });
   }
