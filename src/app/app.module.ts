@@ -1,16 +1,28 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 import { AppComponent } from './app.component';
+
+import {MdButtonModule} from '@angular/material';
+
+import { EsriLoaderService } from 'angular2-esri-loader';
+import { EsriMapComponent } from './esri-map/esri-map.component';
+
+
+import 'hammerjs';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    EsriMapComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule, BrowserAnimationsModule, MdButtonModule
   ],
-  providers: [],
+  providers: [EsriLoaderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
