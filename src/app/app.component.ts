@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Geocap Subsurface Server';
-  version = 1.0;
+  version = 1.3;
 }

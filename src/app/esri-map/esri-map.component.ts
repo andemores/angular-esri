@@ -20,17 +20,67 @@ export class EsriMapComponent implements OnInit {
     private esriLoader: EsriLoaderService
   ) { }
 
-  public ngOnInit() {
+  private createMapId() {
     // only load the ArcGIS API for JavaScript when this component is loaded
     return this.esriLoader.load({
       // use a specific version of the JSAPI
-      //url: 'https://js.arcgis.com/4.4/'
-      url: 'https://js.arcgis.com/3.21/'
+      url: 'https://js.arcgis.com/4.3/'
     }).then(() => {
       // load the needed Map and MapView modules from the JSAPI
       this.esriLoader.loadModules([
-        'esri/map'
+        'esri/Map',
+        'esri/views/MapView',
+        'esri/WebMap'
+      ]).then(([
+        Map,
+        MapView,
+        WebMap
+      ]) => {
 
+        // const mapProperties: any = {
+        //   basemap: 'hybrid'
+        // };
+
+        // const map: any = new Map(mapProperties);
+
+        // const mapViewProperties: any = {
+        //   // create the map view at the DOM element in this component
+        //   container: this.mapViewEl.nativeElement,
+        //   // supply additional options
+        //   center: [-12.287, -37.114],
+        //   zoom: 12,
+        //   map // property shorthand for object literal
+        // };
+
+        // this.mapView = new MapView(mapViewProperties);
+
+        var webmap = new WebMap({
+          portalItem: { // autocasts as new PortalItem()
+            id: "dafeb14c6dff4522a0360c82c024905a"
+          }
+        });
+
+        var view = new MapView({
+          map: webmap,
+          container: this.mapViewEl.nativeElement
+        });        
+
+
+      });
+    });
+
+  }
+
+  private createMap() {
+    // only load the ArcGIS API for JavaScript when this component is loaded
+    return this.esriLoader.load({
+      // use a specific version of the JSAPI
+      url: 'https://js.arcgis.com/4.3/'
+    }).then(() => {
+      // load the needed Map and MapView modules from the JSAPI
+      this.esriLoader.loadModules([
+        'esri/Map',
+        'esri/views/MapView'
       ]).then(([
         Map,
         MapView
@@ -39,28 +89,24 @@ export class EsriMapComponent implements OnInit {
           basemap: 'hybrid'
         };
 
+        const map: any = new Map(mapProperties);
 
-        //const map: any = new Map(mapProperties);
+        const mapViewProperties: any = {
+          // create the map view at the DOM element in this component
+          container: this.mapViewEl.nativeElement,
+          // supply additional options
+          center: [-12.287, -37.114],
+          zoom: 12,
+          map // property shorthand for object literal
+        };
 
-        const map: any = new Map(this.mapViewEl.nativeElement, {
-          basemap: "topo",  //For full list of pre-defined basemaps, navigate to http://arcg.is/1JVo6Wd
-          center: [-122.45, 37.75], // longitude, latitude
-          zoom: 13
-        });        
-
-        // const mapViewProperties: any = {
-        //   // create the map view at the DOM element in this component
-        //   container: this.mapViewEl.nativeElement,
-        //   // supply additional options
-        //   //center: [-12.287, -37.114],
-        //   //zoom: 12,
-        //   map // property shorthand for object literal
-        // };
-
-        //this.mapView = new MapView(mapViewProperties);
-
+        this.mapView = new MapView(mapViewProperties);
       });
     });
+  }
+
+  public ngOnInit() {
+    return this.createMapId();
   }
 
 }
