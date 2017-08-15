@@ -1,3 +1,4 @@
+// Lifted from : https://github.com/tomwayson/angular2-esri-example
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 // also import the "angular2-esri-loader" to be able to load JSAPI modules
@@ -20,6 +21,7 @@ export class EsriMapComponent implements OnInit {
     private esriLoader: EsriLoaderService
   ) { }
 
+  // Load map from Online
   private createMapId() {
     // only load the ArcGIS API for JavaScript when this component is loaded
     return this.esriLoader.load({
@@ -30,11 +32,13 @@ export class EsriMapComponent implements OnInit {
       this.esriLoader.loadModules([
         'esri/Map',
         'esri/views/MapView',
-        'esri/WebMap'
+        'esri/WebMap',
+        'esri/layers/FeatureLayer'
       ]).then(([
         Map,
         MapView,
-        WebMap
+        WebMap,
+        FeatureLayer
       ]) => {
 
         // const mapProperties: any = {
@@ -60,10 +64,17 @@ export class EsriMapComponent implements OnInit {
           }
         });
 
+        let norway_coast_url = "https://geocap.geodata.no/arcgis/rest/services/scandinavia/MapServer/3";
+        var featureLayer = new FeatureLayer({
+          url: norway_coast_url
+        });
+
+        webmap.add(featureLayer);
+
         var view = new MapView({
           map: webmap,
           container: this.mapViewEl.nativeElement
-        });        
+        });
 
 
       });
@@ -71,6 +82,7 @@ export class EsriMapComponent implements OnInit {
 
   }
 
+  // Load empty basemap
   private createMap() {
     // only load the ArcGIS API for JavaScript when this component is loaded
     return this.esriLoader.load({
