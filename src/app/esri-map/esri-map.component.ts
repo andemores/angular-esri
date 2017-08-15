@@ -21,6 +21,10 @@ export class EsriMapComponent implements OnInit {
     private esriLoader: EsriLoaderService
   ) { }
 
+  private createWidget() {
+
+  }
+
   // Load map from Online
   private createMapId() {
     // only load the ArcGIS API for JavaScript when this component is loaded
@@ -33,30 +37,20 @@ export class EsriMapComponent implements OnInit {
         'esri/Map',
         'esri/views/MapView',
         'esri/WebMap',
-        'esri/layers/FeatureLayer'
+        'esri/layers/FeatureLayer',
+        'esri/widgets/Home',
+        'esri/widgets/LayerList',
+
       ]).then(([
         Map,
         MapView,
         WebMap,
-        FeatureLayer
+        FeatureLayer,
+        Home,
+        LayerList
       ]) => {
 
-        // const mapProperties: any = {
-        //   basemap: 'hybrid'
-        // };
 
-        // const map: any = new Map(mapProperties);
-
-        // const mapViewProperties: any = {
-        //   // create the map view at the DOM element in this component
-        //   container: this.mapViewEl.nativeElement,
-        //   // supply additional options
-        //   center: [-12.287, -37.114],
-        //   zoom: 12,
-        //   map // property shorthand for object literal
-        // };
-
-        // this.mapView = new MapView(mapViewProperties);
 
         var webmap = new WebMap({
           portalItem: { // autocasts as new PortalItem()
@@ -76,6 +70,22 @@ export class EsriMapComponent implements OnInit {
           container: this.mapViewEl.nativeElement
         });
 
+
+        // Home
+        var homeWidget = new Home({
+          view: view
+        });
+
+        // adds the home widget to the top left corner of the MapView
+        view.ui.add(homeWidget, "top-left");
+
+        var layerList = new LayerList({
+          view: view
+        });
+        // Adds widget below other elements in the top left corner of the view
+        view.ui.add(layerList, {
+          position: "top-right"
+        });
 
       });
     });
@@ -113,6 +123,9 @@ export class EsriMapComponent implements OnInit {
         };
 
         this.mapView = new MapView(mapViewProperties);
+
+
+
       });
     });
   }

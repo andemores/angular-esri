@@ -6,7 +6,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 
-import {MdButtonModule, MdToolbarModule, MdSidenavModule, MdGridListModule} from '@angular/material';
+import {MdButtonModule, MdToolbarModule, MdSidenavModule, MdGridListModule, MdMenuModule, MdIconModule, MdTabsModule} from '@angular/material';
 
 import { EsriLoaderService } from 'angular2-esri-loader';
 import { EsriMapComponent } from './esri-map/esri-map.component';
@@ -20,7 +20,7 @@ import 'hammerjs';
     EsriMapComponent
   ],
   imports: [
-    BrowserModule, BrowserAnimationsModule, MdButtonModule, MdToolbarModule, MdSidenavModule, MdGridListModule
+    BrowserModule, BrowserAnimationsModule, MdButtonModule, MdToolbarModule, MdSidenavModule, MdGridListModule, MdMenuModule, MdIconModule, MdTabsModule
   ],
   providers: [EsriLoaderService],
   bootstrap: [AppComponent]

@@ -1,4 +1,49 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div id="app-component" >
-  <app-esri-map></app-esri-map>
+<div id="app-component">
+
+
+
+  <md-toolbar>
+
+
+
+    <div>
+
+
+      <!-- menu opens when trigger button is clicked -->
+      <button md-icon-button [mdMenuTriggerFor]="menu1">
+        <md-icon>menu</md-icon>
+    </button>
+      <!-- this menu starts as hidden by default -->
+      <md-menu #menu1>
+        <button md-menu-item>Refresh</button>
+        <button md-menu-item>Settings</button>
+        <button md-menu-item>Help</button>
+        <button md-menu-item disabled>Sign Out</button>
+      </md-menu>
+
+    </div>
+
+    <span>
+{{title}}
+    </span>
+
+  </md-toolbar>
+
+  <md-tab-group>
+    <md-tab label="Map" >
+
+      <div style="height : 600px">
+        <app-esri-map> </app-esri-map>
+      </div>
+
+
+
+
+
+    </md-tab>
+    <md-tab label="3D">Content 2</md-tab>
+  </md-tab-group>
+
+
 </div>
