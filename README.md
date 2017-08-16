@@ -1,4 +1,4 @@
-# MyApp
+# Using ArcGIS 4.x and Angular 4 with Angular Material
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.3.0.
 
