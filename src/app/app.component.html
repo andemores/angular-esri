@@ -3,7 +3,7 @@
 
 
 
-  <md-toolbar>
+  <md-toolbar >
 
 
 
@@ -30,20 +30,40 @@
 
   </md-toolbar>
 
-  <md-tab-group>
-    <md-tab label="Map" >
-
-      <div style="height : 600px">
-        <app-esri-map> </app-esri-map>
-      </div>
 
 
+  <div>
+
+    <md-sidenav-container class="example-sidenav-fab-container"  color="primary">
+      <md-sidenav mode="side" opened="true" >
+        <p>Heløø</p>
+      </md-sidenav>
 
 
 
-    </md-tab>
-    <md-tab label="3D">Content 2</md-tab>
-  </md-tab-group>
+      
+        <md-tab-group>
+          <md-tab label="Map">
 
+            <div style="height : 400px">
+              <app-esri-map> </app-esri-map>
+            </div>
+
+
+
+
+
+          </md-tab>
+          <md-tab label="Web App">
+            <style>.embed-container {position: relative; padding-bottom: 80%; height: 0; max-width: 100%;} .embed-container iframe, .embed-container object, .embed-container iframe{position: absolute; top: 0; left: 0; width: 100%; height: 100%;} small{position: absolute; z-index: 40; bottom: 0; margin-bottom: -15px;}</style><div class="embed-container"><iframe width="500" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="Vinterkonf" src="//gcas.maps.arcgis.com/apps/webappviewer/index.html?id=f30f1fd1c9634c3b85657ba692e737d3&amp;extent=-4.5652,59.2959,9.728,63.5453&amp;zoom=true&amp;previewImage=false&amp;scale=true&amp;disable_scroll=true&amp;theme=light"></iframe></div>
+          </md-tab>
+        </md-tab-group>
+      
+
+
+
+
+    </md-sidenav-container>
+  </div>
 
 </div>
