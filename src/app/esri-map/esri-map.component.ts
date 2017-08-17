@@ -17,9 +17,9 @@ export class EsriMapComponent implements OnInit {
   // this is needed to be able to create the MapView at the DOM element in this component
   @ViewChild('mapViewNode') private mapViewEl: ElementRef;
 
-  constructor(
-    private esriLoader: EsriLoaderService
-  ) { }
+  constructor(private esriLoader: EsriLoaderService) {
+
+  }
 
   private createWidget() {
 
